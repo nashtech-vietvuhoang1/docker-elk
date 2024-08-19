@@ -33,17 +33,20 @@ filebeat.autodiscover:
 
 processors:
   - add_cloud_metadata: ~
-
 monitoring:
-  enabled: true
+  enabled: false
   elasticsearch:
     username: beats_system
     password: ${BEATS_SYSTEM_PASSWORD}
+
+output.logstash:
+  hosts: ["logstash:5044"]
 
 output.elasticsearch:
   hosts: [ http://elasticsearch:9200 ]
   username: filebeat_internal
   password: ${FILEBEAT_INTERNAL_PASSWORD}
+  enabled: false
 
 ## HTTP endpoint for health checking
 ## https://www.elastic.co/guide/en/beats/filebeat/current/http-endpoint.html
